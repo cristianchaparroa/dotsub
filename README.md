@@ -58,5 +58,9 @@ Each job runs automatically each 30 mins.
 ### TODOS
 - [ ] Add more test in back and frontend
 - [ ] Add database implementation and respective repositories
+- [ ] Add another service to list the sources uploaded
+- [ ] Add form validations
 - [ ] Add Java documentation
 - [ ] Add API Rest documentation
+- [ ] Complete the dev pipe line to deploy automatically the application on  cloud-foundry/Amazon/digital ocean or specific server.
+- [ ] Setup multiples environments
