@@ -1,0 +1,15 @@
+---
+
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: node}
+
+
+inputs:
+- name: pipeline-code
+- name: source-code
+
+run:
+  path: bash
+  args: [pipeline-code/concourse/dev/scripts/test_front.sh]

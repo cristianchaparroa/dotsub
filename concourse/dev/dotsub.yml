@@ -1,0 +1,57 @@
+---
+resources:
+- name: pipeline-code
+  type: git
+  source:
+    uri: https://github.com/cristianchaparroa/dotsub.git
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/cristianchaparroa/dotsub.git
+
+- name: every-30m
+  type: time
+  source:
+    interval: 30m
+
+jobs:
+- name: build-test-back
+  public: true
+  plan:
+  - get: pipeline-code
+  - get: source-code
+    trigger: true
+  - get: every-30m
+    trigger: true
+  - task: verify-back
+    file: pipeline-code/concourse/dev/tasks/task_test_back.yml
+    privileged: true
+
+- name: build-test-front
+  public: true
+  plan:
+  - get: pipeline-code
+  - get: source-code
+    trigger: true
+    passed: [build-test-back]
+  - get: every-30m
+    trigger: true
+  - task: package
+    file: pipeline-code/concourse/dev/tasks/task_test_front.yml
+    privileged: true
+
+- name: deploy
+  public: true
+  plan:
+  - get: pipeline-code
+  - get: source-code
+    trigger: true
+    passed: [build-test-front]
+  - get: every-30m
+    trigger: true
+  - task: package
+    file: pipeline-code/concourse/dev/tasks/task_package.yml
+    privileged: true
+  # - put: cloud-foundry
+  #   params:
+  #     manifest: cf-deploy-files/manifest.yml
