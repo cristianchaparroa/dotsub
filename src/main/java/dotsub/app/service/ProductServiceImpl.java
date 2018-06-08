@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
       if (details == null) {
         logger.error("The  image datails is null after store the file");
       }
-
+      logger.debug(String.format("Details:%s ",details.getPathFile()));
       product.setImageDetails(details);
       product.setTitle(title);
       product.setDescription(description);

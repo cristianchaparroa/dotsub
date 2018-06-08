@@ -18,7 +18,7 @@ class ProductForm extends Component {
 
     axios.post(url, data)
       .then(function(res) {
-          console.log(res);
+          alert("The product "+res.data.title+" was saved sucessfully");
       })
       .catch(function(err) {
         console.error(err);

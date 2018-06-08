@@ -1,5 +1,11 @@
 # Dotsub
 
+#### Description
+
+The following is an example for create a new stock product
+![](images/product_saved.png)
+
+
 #### Requirements
 
 To build the following pipeline is required

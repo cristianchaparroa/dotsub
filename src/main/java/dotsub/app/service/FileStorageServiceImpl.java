@@ -55,6 +55,7 @@ public class FileStorageServiceImpl implements FileStorageService  {
         details.setPathFile(STORAGE_LOCATION);
         details.setFileName(fileName);
         return details;
+
       } catch(IOException ex) {
         logger.error(ex.getMessage());
         return new ImageDetailsDTO();
